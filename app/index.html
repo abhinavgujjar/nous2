@@ -1,59 +1,80 @@
 <html >
 <head>
-	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<style>
 		.highlight {
 			color : red;
 		}
+
+		.xClass {
+			background-color: lightgrey
+		}
+
+		
 	</style>
 </head>
 <body ng-app>
-	<div ng-controller="mainController">
-		<h1 >{{greeting}}</h1>
+	<div class="container">
 
-		<div>
+		<div ng-controller="greetingController">
+			<h1 >{{greeting}}</h1>
 			<input type="text" ng-model="greeting" />
 		</div>
 
-		<div ng-repeat="hotel in hotels" ng-class="{highlight : hotel.price >
-			20000}">
-			<h2 >{{hotel.name}}, ({{hotel.location}})</h2>
-			<h2 >{{hotel.price}}</h2>
+		<hr/>
 
-			<input type="number" ng-model="hotel.price" />
+		<div ng-controller="hotelsController">
+			<div class="row">
+				Name
+				<input type="text" ng-model="hotel.name" class="input-sm" />
+				Location
+				<input type="text" ng-model="hotel.location" class="input-sm"/>
+				Price
+				<input type="text" ng-model="hotel.price" class="input-sm"/>
 
-			<input type="checkbox" ng-checked="hotel.price >20000" /> Is Expensive ??</div>
+				<button class="btn btn-primary" ng-click="addHotel(hotel)">Add</button>
+			</div>
+			<br/>
 
-	</div>
+			<div ng-show="showHotels">
 
-	<script type="text/javascript">
-		function mainController($scope)
-		{	
+				<div ng-repeat="hotel in hotels" ng-class="{highlight : hotel.price >
+					20000}" ng-class-even="'xClass'" >
+					<div class="row well" ng-dblclick="editMode = true">
 
-			$scope.greeting = 'Good Morning Nous!';
+						<img class="col-md-2 col-sm-4 col-xs-12" ng-src="http://i.imgur.com/{{hotel.imgUrl}}" />
+						<div class="col-md-5 col-sm-4 col-sm-12">
+							<h2 >
+								<div ng-hide="editMode">{{hotel.name}}</div>
+								<div ng-show="editMode">
+									<input type="text" ng-model="hotel.name"/>
+								</div>
+								<div ng-hide="editMode">{{hotel.location}}</div>
+								<div ng-show="editMode">
+									<input type="text" ng-model="hotel.location"/>
+								</div>
+							</h2>
+						</div>
+						<div class="col-md-3 col-sm-4 hidden-xs">
+							<div ng-hide="editMode">{{hotel.price}}</div>
+							<div ng-show="editMode">
+								<input type="number" ng-model="hotel.price" />
+							</div>
 
-			var hotels = [{
-				name : 'Mariott',
-				location : 'MG Road',
-				price : 20000
-			},{
-				name : 'Leela Palace',
-				location : 'Old Airport Road',
-				price : 34000
-			},{
-				name : 'Taj Vivanta',
-				location : 'MG Road',
-				price : 15000
-			}];
+						</div >
+						<div class="col-md-2 col-sm-4 hidden-xs">
+							<button ng-show="editMode" ng-click="editMode = false">
+								<span class="glyphicon glyphicon-floppy-disk"></span>
+							</button>
+						</div>
 
+					</div>
+				</div>
+			</div>
+		</div>
 
-
-
-			$scope.hotels = hotels;		
-
-			
-		}
-
-	</script>
+		<script type="text/javascript" src="js/app.js"></script>
 </body>
-</html>
+	</html>
