@@ -1,37 +1,57 @@
 <html >
 <head>
 	<script type="text/javascript" src="angular.js"></script>
+	<style>
+		.highlight {
+			color : red;
+		}
+	</style>
 </head>
 <body ng-app>
 	<div ng-controller="mainController">
-		<h1 >Simple Hello World!</h1>
-		<h1>{{' Good '+ ['Morning', 'Afternoon', 'Evening'][0]}}</h1>
-		<h1>{{companyName}}</h1>
-		<div ng-controller="nestedController">
-			<h2 style="color:red">{{companyName}}</h2>
+		<h1 >{{greeting}}</h1>
+
+		<div>
+			<input type="text" ng-model="greeting" />
 		</div>
-		<h2 style="color:grey">{{companyName}}</h2>
+
+		<div ng-repeat="hotel in hotels" ng-class="{highlight : hotel.price >
+			20000}">
+			<h2 >{{hotel.name}}, ({{hotel.location}})</h2>
+			<h2 >{{hotel.price}}</h2>
+
+			<input type="number" ng-model="hotel.price" />
+
+			<input type="checkbox" ng-checked="hotel.price >20000" /> Is Expensive ??</div>
 
 	</div>
-	<div ng-controller="otherController">
-		<h2 style="color:blue">{{companyName}}</h2>
-	</div>
+
 	<script type="text/javascript">
 		function mainController($scope)
 		{	
-			var companies = ['infosys', 'wipro', 'nous'];
 
-			var companyName = companies[2];
+			$scope.greeting = 'Good Morning Nous!';
 
-			$scope.companyName = companyName;		
-		}
+			var hotels = [{
+				name : 'Mariott',
+				location : 'MG Road',
+				price : 20000
+			},{
+				name : 'Leela Palace',
+				location : 'Old Airport Road',
+				price : 34000
+			},{
+				name : 'Taj Vivanta',
+				location : 'MG Road',
+				price : 15000
+			}];
 
-		function nestedController($scope){
-			$scope.companyName = 'NOUS 2';
-		}
-		
-		function otherController($scope){
 
+
+
+			$scope.hotels = hotels;		
+
+			
 		}
 
 	</script>
