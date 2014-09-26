@@ -1,0 +1,39 @@
+<html >
+<head>
+	<script type="text/javascript" src="angular.js"></script>
+</head>
+<body ng-app>
+	<div ng-controller="mainController">
+		<h1 >Simple Hello World!</h1>
+		<h1>{{' Good '+ ['Morning', 'Afternoon', 'Evening'][0]}}</h1>
+		<h1>{{companyName}}</h1>
+		<div ng-controller="nestedController">
+			<h2 style="color:red">{{companyName}}</h2>
+		</div>
+		<h2 style="color:grey">{{companyName}}</h2>
+
+	</div>
+	<div ng-controller="otherController">
+		<h2 style="color:blue">{{companyName}}</h2>
+	</div>
+	<script type="text/javascript">
+		function mainController($scope)
+		{	
+			var companies = ['infosys', 'wipro', 'nous'];
+
+			var companyName = companies[2];
+
+			$scope.companyName = companyName;		
+		}
+
+		function nestedController($scope){
+			$scope.companyName = 'NOUS 2';
+		}
+		
+		function otherController($scope){
+
+		}
+
+	</script>
+</body>
+</html>
