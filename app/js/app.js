@@ -9,6 +9,9 @@ angular.module('holiday').config(function(votingServiceProvider, $routeProvider)
 	$routeProvider.when('/listing', {
 		templateUrl : 'partials/listing.html'
 	})
+$routeProvider.when('/details', {
+		templateUrl : 'partials/details.html'
+	})
 
 	$routeProvider.otherwise({
 		redirectTo : '/listing'

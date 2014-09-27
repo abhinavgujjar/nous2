@@ -30,7 +30,7 @@
 							<div class="row">
 								<div class="col-md-4 col-sm-4 col-sm-12">
 									<h3 >
-										<div ng-hide="hotel.editMode">{{hotel.name | uppercase}}</div>
+										<div ng-hide="hotel.editMode"><a href="#/details?hotelId={{hotel.objectId}}" >{{hotel.name | uppercase}}</a></div>
 										<div ng-show="hotel.editMode">
 											<input type="text" ng-model="hotel.name"/>
 										</div>

@@ -9,9 +9,14 @@ angular.module('hotels', [])
 
 
 angular.module('hotels')
-	.controller('hotelsController', function($scope, uiConfig, hotelsDb, votingService) {
+	.controller('hotelsController', function($scope, uiConfig, hotelsDb, votingService, $location, $rootScope) {
 
 		$scope.descLimit = uiConfig.descLimit;
+
+		$scope.selectedHotel = function(hotel){
+			hotelsDb.selectedHotel = hotel;
+			$location.url('/details');
+		}
 
 
 		$scope.upVote = function(hotel) {

@@ -15,6 +15,12 @@ angular.module('hotels')
 					callback(data.results);
 				});
 			},
+			getHotel: function(callback, id) {
+				var hotels;
+				var resp = $http.get('https://api.parse.com/1/classes/hotel/' + id , config).success(function(data) {
+					callback(data);
+				});
+			},
 			addHotel: function(hotel) {
 				
 
