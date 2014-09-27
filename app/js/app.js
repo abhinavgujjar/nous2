@@ -38,7 +38,8 @@ angular.module('holiday').directive('amnityDisplay', function() {
 		restrict: 'E',
 		templateUrl: 'partials/amenities.html',
 		scope: {
-			list: '='
+			list: '=',
+			editable : '@'
 		},
 		controller: function($scope) {
 			$scope.add = function(amenity) {
@@ -47,6 +48,38 @@ angular.module('holiday').directive('amnityDisplay', function() {
 				$scope.amenity = {}
 			}
 
+		}
+	}
+})
+
+angular.module('holiday').directive('panel', function() {
+	return {
+		restrict: 'E',
+		transclude : true,
+		templateUrl: 'partials/panel.html',
+		scope: {
+			title: '@heading',
+			step : '=step'
+		}
+	}
+})
+
+
+angular.module('holiday').directive('zoom', function() {
+	return {
+		restrict: 'A',
+		link : function(scope, element, attr ){
+			element.on('mouseenter', function(){
+				element.css({
+					'font-size' : '48px'
+				})
+			})
+
+			element.on('mouseleave', function(){
+				element.css({
+					'font-size' : '18px'
+				})
+			})
 		}
 	}
 })

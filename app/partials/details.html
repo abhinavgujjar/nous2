@@ -1,7 +1,7 @@
 <div class="row well" ng-controller="detailsController">
 
 	<img class="col-md-2 col-sm-4 col-xs-12" ng-src="http://i.imgur.com/{{hotel.imgUrl}}" />
-	<div class="col-md-10">
+	<div class="col-md-7">
 		<div class="row">
 			<div class="col-md-4 col-sm-4 col-sm-12">
 				<h3 >
@@ -64,6 +64,9 @@
 				</blockquote>
 			</div>
 		</div>
+	</div>
+	<div class="col-md-3">
+		<amnity-display list="hotel.amenities"></amnity-display>
 	</div>
 
 </div>
