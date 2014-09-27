@@ -7,7 +7,11 @@ angular.module('holiday').config(function(votingServiceProvider, $routeProvider)
 	})
 
 	$routeProvider.when('/listing', {
-		template : '<div><h1>LISTING PAGE</h1></div>'
+		templateUrl : 'partials/listing.html'
+	})
+
+	$routeProvider.otherwise({
+		redirectTo : '/listing'
 	})
 
 	votingServiceProvider.setIncrement(7);

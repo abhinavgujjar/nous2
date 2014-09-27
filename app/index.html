@@ -19,14 +19,23 @@
 <body ng-app='holiday'>
 	<div class="container">
 
-		<hr/>
+		<ul class="nav nav-tabs" role="tablist">
+			<li>
+				<a href="#/listing">Listing</a>
+			</li>
+			<li>
+				<a href="#/create">Create</a>
+			</li>
+		</ul>
 
 		<div ng-controller="greetingController">
-			<h1 >{{greeting | limitTo : gLimit}}</h1>
-			<input type="text" ng-model="greeting" />
+			<div class="page-header">
+				<h1>
+					{{greeting | limitTo : gLimit}}
+					<small>Subtext for header</small>
+				</h1>
+			</div>
 		</div>
-
-		<hr/>
 
 		<ng-view></ng-view>
 

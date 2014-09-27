@@ -1,12 +1,33 @@
 angular.module('hotels')
-	.controller('createController', function($scope, hotelsDb) {
+	.controller('createController', function($scope, hotelsDb, $location) {
+
+		$scope.hotel = {
+			price : 5000,
+			amenities : [{
+				name : 'Swimming Pool',
+				available : true
+			}]
+		}		
+
+		$scope.add = function(amenity){
+			$scope.hotel.amenities.push(angular.copy(amenity));
+
+			$scope.amenity = {}
+		}
+
+
 		$scope.addHotel = function(hotel) {
 			var newHotel = angular.copy(hotel);
 
-			hotelsDb.addHotel(newHotel)
-			
+			if (this.hotelsForm.$invalid) {
+				alert('not properly filled');
+			} else {
 
-			$scope.hotel = {};
+				hotelsDb.addHotel(newHotel)
+				$scope.hotel = {};
+
+				$location.url('/listing');
+			}
 		}
 
 	})
