@@ -9,6 +9,8 @@ angular.module('hotels')
 			}]
 		}		
 
+		$scope.step = 1;
+
 		$scope.add = function(amenity){
 			$scope.hotel.amenities.push(angular.copy(amenity));
 

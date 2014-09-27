@@ -13,7 +13,7 @@ angular.module('hotels')
 
 		$scope.descLimit = uiConfig.descLimit;
 
-		
+
 		$scope.upVote = function(hotel) {
 			votingService.upVote(hotel);
 		}
@@ -51,11 +51,11 @@ angular.module('hotels')
 
 		// $scope.orderOptions = ['name', 'location', 'price'];
 
-		var hotels = hotelsDb.getHotels();
+		hotelsDb.getHotels(function(hotels){
+			$scope.hotels = hotels;
+		});
 
-
-
-		$scope.hotels = hotels;
+	
 
 
 	});
