@@ -13,12 +13,7 @@ angular.module('hotels')
 
 		$scope.step = 1;
 
-		$scope.add = function(amenity){
-			$scope.hotel.amenities.push(angular.copy(amenity));
-
-			$scope.amenity = {}
-		}
-
+		
 
 		$scope.addHotel = function(hotel) {
 			var newHotel = angular.copy(hotel);
