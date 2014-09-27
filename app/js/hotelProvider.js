@@ -1,5 +1,5 @@
 angular.module('hotels')
-.factory('hotelsProvider', function(){
+.factory('hotelsDb', function(){
 
 	var hotels =  [{
 			"id": "1",
@@ -44,6 +44,9 @@ angular.module('hotels')
 	return {
 		getHotels : function(){
 			return hotels;
+		},
+		addHotel : function(hotel){
+			hotels.push(hotel);
 		}
 	}
 })

@@ -1,6 +1,7 @@
 <html >
 <head>
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<style>
@@ -18,6 +19,8 @@
 <body ng-app='holiday'>
 	<div class="container">
 
+		<hr/>
+
 		<div ng-controller="greetingController">
 			<h1 >{{greeting | limitTo : gLimit}}</h1>
 			<input type="text" ng-model="greeting" />
@@ -25,121 +28,16 @@
 
 		<hr/>
 
-		<div ng-controller="hotelsController">
-			<div class="row">
+		<ng-view></ng-view>
 
-				<div class="col-md-8">
-					Name
-					<input type="text" ng-model="hotel.name" class="input-sm" />
-					Location
-					<input type="text" ng-model="hotel.location" class="input-sm"/>
-					Price
-					<input type="text" ng-model="hotel.price" class="input-sm"/>
+	</div>
 
-					<button class="btn btn-primary" ng-click="addHotel(hotel)">Add</button>
-				</div>
-				<div class="col-md-4">{{hotel | json}}</div>
-
-			</div>
-			<br/>
-			<hr/>
-			<div class="row">
-				<div class="col-md-3">
-					<input type="text" class="form-control" ng-model="searchTerm" />
-				</div>
-				<div class="col-md-3">
-					<select class="form-control" ng-model="orderTerm" >
-						<option value='{{option.name}}' ng-repeat="option in orderOptions">{{option.display}}</option>
-
-					</select>
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" ng-model="orderTerm"  />
-				</div>
-			</div>
-			<br/>
-			<br/>
-
-			<div ng-show="showHotels">
-
-				<div ng-repeat="hotel in hotels | filter : searchTerm | orderBy : orderTerm " ng-class="{highlight : hotel.price >
-					20000}" ng-class-even="'xClass'" >
-					<div class="row well" >
-
-						<img class="col-md-2 col-sm-4 col-xs-12" ng-src="http://i.imgur.com/{{hotel.imgUrl}}" />
-						<div class="col-md-10">
-							<div class="row">
-								<div class="col-md-4 col-sm-4 col-sm-12">
-									<h3 >
-										<div ng-hide="hotel.editMode">{{hotel.name | uppercase}}</div>
-										<div ng-show="hotel.editMode">
-											<input type="text" ng-model="hotel.name"/>
-										</div>
-									</h3>
-									<h4>
-										<div ng-hide="hotel.editMode">{{hotel.location}}</div>
-										<div ng-show="hotel.editMode">
-											<input type="text" ng-model="hotel.location"/>
-										</div>
-									</h4>
-								</div>
-								<div class="col-md-3 col-sm-4 hidden-xs">
-									<div>
-										<h3>
-											<div ng-hide="hotel.editMode">{{hotel.price | currency : 'INR '}}</div>
-											<div ng-show="hotel.editMode">
-												<input type="number" ng-model="hotel.price" />
-											</div>
-										</h3>
-									</div>
-									<h4>
-										<div class="label label-warning">{{hotel.area | toFeet | number : 2}}</div>
-									</h4>
-
-								</div >
-								<div class="col-md-1 col-sm-4 hidden-xs">
-									<button ng-show="hotel.editMode" ng-click="hotel.editMode = false">
-										<span class="glyphicon glyphicon-floppy-disk"></span>
-									</button>
-								</div>
-								<div  class="col-md-2 col-sm-4 hidden-xs">
-									<div>
-										<button ng-click="startEditing(hotel)">edit</button>
-									</div><div>
-										<button ng-click="upVote(hotel)">up</button>
-									</div>
-									<div>{{hotel.rating}}</div>
-									<div>
-										<button ng-click="downVote(hotel)">down</button>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div ng-show="hotel.editMode">
-										<textarea class="form-control" rows="7" ng-model="hotel.description"></textarea>
-									</div>
-									<blockquote class="text-muted" ng-hide="hotel.editMode">
-										<span ng-hide="showMore">{{hotel.description | limitTo: descLimit}}</span>
-										<span ng-show="showMore">{{hotel.description }}</span>
-										<span ng-show="hotel.description.length >
-											descLimit && !showMore">
-											<a href='' ng-click="showMore = true">... more</a>
-										</span>
-									</blockquote>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<script type="text/javascript" src="js/app.js"></script>
-		<script type="text/javascript" src="js/controllers/greetingController.js"></script>
-		<script type="text/javascript" src="js/controllers/hotelsController.js"></script>
-		<script type="text/javascript" src="js/hotelProvider.js"></script>
-		<script type="text/javascript" >var greetingController = "hello";</script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/controllers/greetingController.js"></script>
+	<script type="text/javascript" src="js/controllers/hotelsController.js"></script>
+	<script type="text/javascript" src="js/controllers/createController.js"></script>
+	<script type="text/javascript" src="js/hotelProvider.js"></script>
+	<script type="text/javascript" src="js/votingService.js"></script>
+	<script type="text/javascript" >var greetingController = "hello";</script>
 </body>
-	</html>
+</html>

@@ -1,0 +1,15 @@
+<div class="row" ng-controller="createController">
+
+				<div class="col-md-8">
+					Name
+					<input type="text" ng-model="hotel.name" class="input-sm" />
+					Location
+					<input type="text" ng-model="hotel.location" class="input-sm"/>
+					Price
+					<input type="text" ng-model="hotel.price" class="input-sm"/>
+
+					<button class="btn btn-primary" ng-click="addHotel(hotel)">Add</button>
+				</div>
+				<div class="col-md-4">{{hotel | json}}</div>
+
+			</div>

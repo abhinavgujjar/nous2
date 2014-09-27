@@ -1,41 +1,25 @@
 angular.module('hotels', [])
 
+
 angular.module('hotels', [])
 	.value('uiConfig', {
 		descLimit: 200,
 		greetingLimit: 20
 	});
 
+
 angular.module('hotels')
-	.controller('hotelsController', function($scope, uiConfig, hotelsProvider) {
+	.controller('hotelsController', function($scope, uiConfig, hotelsDb, votingService) {
 
 		$scope.descLimit = uiConfig.descLimit;
 
-		$scope.addHotel = function(hotel) {
-			var newHotel = angular.copy(hotel);
-
-			$scope.hotels.push(newHotel);
-
-			$scope.hotel = {};
-		}
-
+		
 		$scope.upVote = function(hotel) {
-			if (!hotel.rating) {
-				hotel.rating = 0;
-			}
-
-			hotel.rating++;
-
+			votingService.upVote(hotel);
 		}
 
 		$scope.downVote = function(hotel) {
-
-			if (!hotel.rating) {
-				hotel.rating = 0;
-			}
-
-
-			hotel.rating--;
+			votingService.downVote(hotel);
 		}
 
 		$scope.startEditing = function(hotel) {
@@ -67,7 +51,7 @@ angular.module('hotels')
 
 		// $scope.orderOptions = ['name', 'location', 'price'];
 
-		var hotels = hotelsProvider.getHotels();
+		var hotels = hotelsDb.getHotels();
 
 
 
