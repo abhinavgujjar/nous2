@@ -1,6 +1,8 @@
 angular.module('hotels')
 	.controller('createController', function($scope, hotelsDb, $location) {
 
+		$scope.availableImages = ['OqJMuy5.jpg', 'qA4PCDl.jpg', 'kVIGWsz.jpg'];
+
 		$scope.hotel = {
 			price : 5000,
 			amenities : [{
