@@ -20,6 +20,17 @@ $routeProvider.when('/details', {
 	votingServiceProvider.setIncrement(7);
 })
 
+
+angular.module('holiday').directive('preview', function(){
+    return {
+        restrict : 'E',
+        templateUrl : 'preview.html',
+        scope :{
+            
+        }
+    }
+})
+
 angular.module('holiday').filter('toFeet', function(){
 	return function(input){
 		return input * 10.7639;
